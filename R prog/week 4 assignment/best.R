@@ -17,12 +17,19 @@ best<-function(state,outcome){
     }
     else{
        
-       min_val<- tapply(as.numeric(data1[,outcome]),data1[,"Hstate"],function(x) 
-                                                                            min(x,na.rm = TRUE),simplify = FALSE)
+       min_val<- tapply(suppressWarnings(as.numeric(data1[,outcome])),
+                        data1[,"Hstate"],function(x) 
+                        min(x,na.rm = TRUE),
+                        simplify = FALSE)
        
-       result<-data1[,"hospital"][which(as.numeric(data1[,outcome])==min_val$state)]
+       result<-data1[,"hospital"]
+               [which(suppressWarnings(
+                        as.numeric(data1[,outcome]))==min_val[state] &
+                          (data1[,"Hstate"]==state))]
+       
+       output<-result[order(result)]
         
     }
-    
+    output
          
 }
