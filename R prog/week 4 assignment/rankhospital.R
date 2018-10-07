@@ -17,10 +17,23 @@ rankhospital<-function(state,outcome,rank){
     }
     
     
-    data2<-cbind(data1[,"hospital"][which(data1[,"Hstate"]==state)],suppressWarnings(as.numeric(data1[,outcome][which(data1[,"Hstate"]==state)])))
+    data2<-cbind(data1[,"hospital"]
+                 [which(data1[,"Hstate"]==state)]
+                 ,suppressWarnings(
+                     as.numeric(data1[,outcome]
+                                              [which
+                                                  (data1[,"Hstate"]==state)
+                                                  ]
+                                )
+                     )
+                 )
     colnames(data2)<-c("hospital",outcome)
+    
     data3<-data2[order(data2[,outcome],data2[,"hospital"])]
-    data4<-data2[order(data2[,outcome],data2[,"hospital"],decreasing = TRUE)]
+    
+    data4<-data2[order(data2[,outcome],data2[,"hospital"],
+                       decreasing = TRUE)]
+    
     if(is.numeric(rank)==TRUE){
         return(data2[rank])
     }
