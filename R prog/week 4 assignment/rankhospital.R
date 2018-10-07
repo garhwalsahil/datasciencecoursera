@@ -21,21 +21,22 @@ rankhospital<-function(state,outcome,rank){
                  [which(data1[,"Hstate"]==state)]
                  ,suppressWarnings(
                      as.numeric(data1[,outcome]
-                                              [which
-                                                  (data1[,"Hstate"]==state)
-                                                  ]
-                                )
+                                [which
+                                    (data1[,"Hstate"]==state)
+                                    ]
                      )
                  )
+    )
     colnames(data2)<-c("hospital",outcome)
     
-    data3<-data2[order(data2[,outcome],data2[,"hospital"])]
+    data3<-data2[order(as.numeric(data2[,outcome]),data2[,"hospital"])]
     
-    data4<-data2[order(data2[,outcome],data2[,"hospital"],
+    data4<-data2[order(as.numeric(data2[,outcome]),data2[,"hospital"],
                        decreasing = TRUE)]
     
     if(is.numeric(rank)==TRUE){
-        return(data2[rank])
+        return(data3[rank])
+        
     }
     else if(rank=="best"){
         return(data3[1])
