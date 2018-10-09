@@ -22,10 +22,10 @@ best<-function(state,outcome){
                         min(x,na.rm = TRUE),
                         simplify = FALSE)
        
-       result<-data1[,"hospital"]
-               [which(suppressWarnings(
-                        as.numeric(data1[,outcome]))==min_val[state] &
-                          (data1[,"Hstate"]==state))]
+       result<-data1[,"hospital"][which(
+           suppressWarnings( 
+               as.numeric(data1[,outcome])))==min_val[state] & 
+               (data1[,"Hstate"]==state)]
        
        output<-result[order(result)]
         
