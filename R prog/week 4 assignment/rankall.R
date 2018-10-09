@@ -18,7 +18,7 @@ rankall<-function(outcome,num){
     if(is.numeric(num)){
         for(i in seq_along(data2)){
             data2[[i]]<-data2[[i]][order(suppressWarnings(as.numeric(data2[[i]][,outcome])),data2[[i]][,"hospital"]),]
-            ordered[[i]]<-c(data2[[i]][num,"hospital"],data2[[i]][num,"Hstate"])
+            ordered[[i]]<-c(data2[[i]][num,"hospital"],data2[[i]][1,"Hstate"])
         
         
         }
